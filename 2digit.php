@@ -14,7 +14,7 @@
     'ResultListToken' => 'cmxwzd3e5wreecv8c7mnbcx0hsm5u',
     'UserID' => $uid,
     'DeviceID' => rand(999,9999),
-    'gameID' => 12,
+    'gameID' => 8,
     'LoginToken' => $lifetimeToken
    ];
    $response = post_api_call($post,$url);

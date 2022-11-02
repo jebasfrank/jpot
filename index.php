@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/style.css">
 <!--font-awesome CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Card Game Login</title>
+<title>Jackpot Game Login</title>
 
 <!--Check-in And Check-out Date Range Picker CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">

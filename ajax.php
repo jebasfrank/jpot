@@ -2,6 +2,7 @@
   session_start();
   date_default_timezone_set('Asia/Kolkata');
   include "includes/functions.php";
+  $uid = $_SESSION['uid'];
   if(isset($_GET['login_user'])){
     $user_id = $_GET['user_id'];
     $login_pass = $_GET['login_pass'];
@@ -47,7 +48,7 @@
     if($draw_type>1){
       $post['advanceDrawFor'] = $draw_type;
     }
-    $url = "https://www.pubgtime.com/api/SaleAPI.php";
+    $url = "https://www.pubgtime.com/api/SaleAPItest.php";
     $response = post_api_call($post,$url);
     $response = json_decode($response);
     $is_error = 0;
@@ -63,8 +64,8 @@
     echo json_encode($return);
   }
   if(isset($_GET['get_report'])){
-    $datefrom = strtotime($_GET['datefrom']);
-    $to_date  = strtotime($_GET['to_date']);
+    $datefrom = strtotime($_GET['datefrom']." 00:00:00");
+    $to_date  = strtotime($_GET['to_date']." 23:59:59");
     $uid = $_SESSION['uid'];
     $GameId = 12;
     $ReportToken = "vmrwzd3e5wreecv8c7mnbcx0hsm3d";
@@ -79,47 +80,87 @@
     $response = post_api_call($post,$url);
     $response = json_decode($response);
     ?>
-    <table style="color:#fff; width: 100%;">
-      
+    <style>
+      @media print {
+    #printbtn {
+        display :  none;
+    }
+    .borderdot td{
+        border-bottom: 1px dotted #000 !important; 
+      }
+}
+      .print_report tr td{
+          color: #000;
+          border: none;
+      }
+      .borderdot td{
+        border-bottom: 1px dotted #000; 
+      }
+    </style>
+    <table style="color:#000; width: 100%;" class="print_report">
       <tr>
-        <td>Date: <?php echo date("d-m-Y"); ?></td>
-        <td>Time: <?php echo date("h:i a"); ?></td>
+        <td colspan="2">JACKPOT</td>
       </tr>
       <tr>
-        <td>From: <?php echo $_GET['datefrom']; ?></td>
-        <td>To: <?php echo $_GET['to_date']; ?></td>
+        <td>Agent ID :</td>
+        <td><?php echo $uid; ?></td>
       </tr>
       <tr>
-        <td>Balance</td>
-        <td><?php echo $response->SalesReport[0]->netplaypoints ?></td>
+        <td>Date: </td>
+        <td><?php echo date("d-m-Y"); ?> <?php echo date("h:i a"); ?></td>
       </tr>
+      <tr class="borderdot" style=" border-bottom: 1px dotted #000 !important; ">
+        <td colspan="2">
+          <strong>REPORT</strong> <br>
+          From: <?php echo $_GET['datefrom']; ?> To: <?php echo $_GET['to_date']; ?>
+        </td>        
+      </tr>
+    </table>
+    <table style="color:#000; width: 100%;" class="print_report">
       <tr>
-        <td>Cancel BL</td>
+        <td style="width:40%">Gross Sales</td>
+        <td >:</td>
+        <td style="width:40%"><?php echo $response->SalesReport[0]->playpoints ?></td>
+      </tr>
+      <tr class="borderdot" style=" border-bottom: 1px dotted #000 !important; ">
+        <td>Cancel</td>
+        <td>:</td>
         <td><?php echo $response->SalesReport[0]->calcelpoints ?></td>
       </tr>
+      <?php 
+          $net_balance = $response->SalesReport[0]->playpoints-$response->SalesReport[0]->calcelpoints;
+       ?> 
       <tr>
-        <td>Net Balance</td>
-        <td><?php echo $response->SalesReport[0]->netplaypoints-$response->SalesReport[0]->calcelpoints ?></td>
+        <td>Net Sales</td>
+        <td>:</td>
+        <td><?php echo $net_balance; ?></td>
       </tr>
-      <tr>
-        <td>Claim BL</td>
+      <tr class="borderdot" style=" border-bottom: 1px dotted #000 !important; ">
+        <td>Claim</td>
+        <td>:</td>
         <td><?php echo $response->SalesReport[0]->claimpoints ?></td>
       </tr>
-      <tr>
-        <td>Operator BL</td>
-        <td><?php echo $response->SalesReport[0]->OperatorBalance-($response->SalesReport[0]->claimpoints+$response->SalesReport[0]->calcelpoints); ?></td>
+      <tr class="borderdot" style=" border-bottom: 1px dotted #000 !important; ">
+        <td>Operator</td>
+        <td>:</td>
+        <td><?php echo $net_balance-($response->SalesReport[0]->claimpoints); ?></td>
       </tr>
-      <tr>
+      <?php 
+          $net_balance = $net_balance-($response->SalesReport[0]->claimpoints);
+       ?>
+      <tr class="borderdot" style=" border-bottom: 1px dotted #000 !important; ">
         <td>Retailer Discount</td>
+        <td>:</td>
         <td><?php echo $response->SalesReport[0]->Commission ?></td>
       </tr>
       <tr>
-        <td>Net Pay BL</td>
-        <td><?php echo $response->SalesReport[0]->NetToPay-$response->SalesReport[0]->calcelpoints ?></td>
+        <td>Net Pay</td>
+        <td>:</td>
+        <td><?php echo $net_balance-$response->SalesReport[0]->Commission ?></td>
       </tr>
       <tr>
-        <td colspan="2" style="text-align: center;">
-          <button type="button" class="btn btn-success">Print</button>
+        <td colspan="3" style="text-align: center;">
+          <button onclick="printreport('report_html')" type="button" id="printbtn" class="btn btn-success">Print</button>
         </td>
       </tr>
     </table>
@@ -146,6 +187,7 @@
       'GameId' => 12,
       'FromTimeStamp' => $FromTimeStamp,
       'toTimeStamp' => $toTimeStamp,
+      'report_type_id' => $report_type_id,
       'is_key_required' =>1
      ];
      $response = post_api_call($post,$url);
@@ -185,7 +227,7 @@
           <?php } } 
 if($value->Status!='Canceled'){
           ?>
-            <button class="btn btn-success" type="button" onclick="print_ticket(<?php echo $value->barcode;?>)">Print</button>
+            <button class="btn btn-success  btn-sm" type="button" onclick="print_ticket(<?php echo $value->barcode;?>)">Print</button>
           <?php } ?>
             </td>
           </tr>
@@ -254,18 +296,44 @@ if($value->Status!='Canceled'){
      $ticket_details = $response->ticket_details;
      $ticket_details_exp = explode(";",$ticket_details[0]);
      $total_tickets = count($ticket_details_exp);
+     $ticket_purchase_time = explode(" ",$response->ticket_purchased_date_time[0]);
+     $ticket_purchase_time  = $ticket_purchase_time[1];
 
      $total_booking_amount = $response->tot_amount;
      $drawtime = $response->drawTime;
+     $all_tickets = "<table><tr>";
+     $i=0;
+     $total_tickets = 0;
+     foreach($ticket_details_exp AS $ticket){
+      $i++;
+      $tickets = explode("-",$ticket);
+      if($i%2==0){
+        $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td></tr><tr>";
+      }else{
+        $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td>";
+      }
+      $total_tickets = $total_tickets+$tickets[1];
+     }
+     $all_tickets .= "</table>";
+     $all_tickets2 = $all_tickets;
+     //$ticket_details[0]    = str_replace(";", "&nbsp;&nbsp;", $ticket_details[0]);
 
      $data = array();
-     $data['barcode'] = $barcode[0];
-     $data['booking_date'] = $booking_date[0];
-     $data['current_rate'] = $current_rate[0];
-     $data['ticket_details'] = $ticket_details[0];
-     $data['total_tickets'] = $total_tickets;
+     $data['barcode']         = $barcode[0];
+     $data['booking_date']    = $booking_date[0];
+     $data['booking_time']    = $ticket_purchase_time;
+     $data['current_rate']    = $current_rate[0];
+     $data['ticket_details']  = $all_tickets2;
+     $data['total_tickets']   = $total_tickets;
      $data['total_booking_amount'] = $total_booking_amount[0];
-     $data['drawtime'] = get_normal_time($drawtime[0]);
+     $data['drawtime']        = get_normal_time($drawtime[0]);
+     $all_barcode_details     = $response->all_barcode_details[0];
+     $display_barcode = "<table style='padding:0px; margin:0px'>";
+     foreach($all_barcode_details  AS $time){
+        $display_barcode .= "<tr><td style='font-size:12px;'>".$time->barcode."</td><td style='font-size:12px;'>".get_normal_time($time->time)."</td></tr>";
+     }
+     $display_barcode .= "</table>";
+     $data['display_barcode'] = $display_barcode;
      echo json_encode($data);
   }
   if(isset($_GET['update_token'])){
@@ -306,20 +374,54 @@ if($value->Status!='Canceled'){
      <?php
      foreach($response->ResultList AS $rows){
       $dislay = $rows->GameValue;
-      if($rows->GameValue>60){
-        $dislay =$dislay-60;
+      // if($rows->GameValue>60){
+      //   $dislay =$dislay-60;
+      // }
+      $bonus = 1;
+      if($rows->bonus>1){
+        $bonus = $rows->bonus;
       }
       ?>
       <tr>
         <td><?php echo $rows->GameTime; ?></td>
-        <td><?php get_result_name_img($value->GameValue); ?>
-                            </td>
-                            <td></td>
+        <td><?php get_result_name_img_report($rows->GameValue,$bonus); ?></td>
+        <td></td>
       </tr>
       <?php
      }
      ?>
      </table>
      <?php
+  }
+  if(isset($_GET['GetBarcode'])){
+    $data = array();
+    $data['barcodeID'] = $_GET['barcodeID'];
+    $data['ResultToken'] = $_GET['ResultToken'];
+    $data['UserID'] = $_GET['UserID'];
+    $data['GameId'] = $_GET['GameId'];
+    $url = "https://www.pubgtime.com/api/BarcodeSearchApi.php?barcodeID=".$data['barcodeID']."&ResultToken=".$data['ResultToken']."&UserID=".$data['UserID']."&GameId=".$data['GameId'];
+    $response = get_api_call($url);
+    echo $response;
+  }
+  if(isset($_GET['result_declared'])){
+    //$result_date =$_GET['date'];
+    $ResultListToken = "cmxwzd3e5wreecv8c7mnbcx0hsm5u";
+    $gameID = 12;
+    $url = "https://www.pubgtime.com/api/ResultAPI.php";
+    $post = [
+      'UserID' =>  $uid,
+      'ResultToken' => $ResultListToken,
+      'GameId' => $gameID,
+      'DeviceID' => '9638522'
+     ];
+     $response = post_api_call($post,$url);
+     //echo $response;
+     $response = json_decode($response,true);
+     //print_r($response);
+     $result = "";
+     if(isset($response['ResultDetails'])){
+      $result= $response['ResultDetails'][0]['Value'];
+     }
+     echo $result;
   }
 ?>

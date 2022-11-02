@@ -1,3 +1,10 @@
+<?php 
+  session_start();
+  if(isset($_SESSION['uid'])){
+    header("Location: app.php");
+    die();
+  }
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,14 +16,14 @@
 <link rel="stylesheet" href="css/style.css">
 <!--font-awesome CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Jackpot Game Login</title>
+<title>Card Game Login</title>
 
 <!--Check-in And Check-out Date Range Picker CSS-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
 </head>
 
 <body>
-<div class="container-fluid login-page-bg">
+<div class="container-fluid login-page-bg" id="container">
   <div class="container container-full-wrapper">
     <div class="row align-items-center">
       <div class="col-md-12">
@@ -31,7 +38,7 @@
             <input class="input-new-group-newclass" type="password" name="login_pass" id="login_pass"  placeholder="Password">
           </div>
           <div class="input-new-groupsubmit">
-            <button type="submit-login" form="form1" onclick="login_user()" name="registration_submit1" id="registration_submit1" value="Submit">Login</button>
+            <button type="submit-login" form="form1" onclick="login_user()" name="registration_submit1" id="registration_submit1" value="Submit">Enter to Login</button>
           </div>
           
           <div class="input-new-groupsubmit">
@@ -68,6 +75,26 @@ $(document).ready(function(){
 })
 </script> 
 <script type="text/javascript">
+  $('input').keypress(function(e) {
+    if (e.which == '13') {
+       e.preventDefault();
+       login_user();
+     }
+  });
+    
+  function requestFullScreen(element) {
+      var element = document.querySelector("#container");
+
+      // make the element go to full-screen mode
+      element.requestFullscreen()
+        .then(function() {
+          // element has entered fullscreen mode successfully
+        })
+        .catch(function(error) {
+          // element could not enter fullscreen mode
+        });
+        $("#FullScreenModal").modal("hide");
+    }
         function login_user(){
           var user_id = $("#login_email").val();
           var login_pass = $("#login_pass").val();
@@ -87,6 +114,7 @@ $(document).ready(function(){
 
               }else{
                 $("#response_id").html('<div class="alert alert-success">'+e.message+' please wait...</div>');
+                
                 location.replace("app.php");
               }
             }

@@ -24,32 +24,77 @@
     $last_time_stamp = $response->ResultList[0]->TimeStamp;
    }
 
-  ?>
+   //Getting Next Draw Time//
+   $url = "https://www.pubgtime.com/api/NextDrawTimeAPI.php";
+   $post = array();
+   $post['TimeToken'] = "3reerntbk4cvxvdner22emul9kx7czv";
+   $post['GameId'] = 8;
+   $response2 = json_Decode(post_api_call($post,$url));
+   $nex_time = "";
+   if(isset($response2->nextDrawTimeStamp)){
+    $nex_time = $response2->rawTime;
+   }
+   //Checking For Manual//
+   $url = "https://www.pubgtime.com/api/ismanualApi.php";
+   $post = array();
+   $post['ValueToken'] = "3reerntbk4cvxvdner22emul9kx7czv";
+   $post['GameID'] = 8;
+   $response3 = json_Decode(post_api_call($post,$url));
+   $is_manual = 0;
+   if(isset($response3->is_manual)){
+    $is_manual = $response3->is_manual;
+   }
+ ?>
 <!doctype html>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/style.css">
-<!--font-awesome CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Card Game</title>
-<!--Check-in And Check-out Date Range Picker CSS-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+  <!--font-awesome CSS-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Card Game</title>
+  <!--Check-in And Check-out Date Range Picker CSS-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 </head>
+<body style="background-color:#00b2ff">
+      <div style="background-color:hsla(120,100%,50%,0.3); position: fixed; width: 100%; height: 100vh; z-index: 999; display: none;" id="background_id">&nbsp;</div>
 
-<body>
-<div class="container-fluid top-bg">
+<div style="background:rgba(0, 0, 0, 0.5); z-index:999; width: 100%; height: 100vh; position: fixed; display:none;" id="result_animation">
+  <div style="background: #fff; position: fixed; top:35%; left:35%; border-radius: 5px; padding: 5px; width:400px; text-align: center;"><strong>Declaring the result!</strong></div>
+<div style="width:400px; height: 120px; overflow: hidden; text-align:center; background: #fff; position: fixed; top:40%; left:35%; border-radius: 5px;">
+  <script>
+    var numArr = new Array();
+    <?php 
+          for($i=1; $i<=120; $i++){
+            ?>
+            numArr[<?php echo $i; ?>] = "<?php echo get_result_name_img3($i);  ?>";
+            <?php
+          }
+     ?>
+  </script>
+      <div class="animate" style="height: 100px; width: 100%; text-align:center; ">
+        
+          <div style="height:auto; width:100%; line-height: 60px; text-align: center;">
+            <div style="font-size: 50px; font-weight: 800; text-align: center;" id="display_num"></div>
+            <button type="button" onclick="location.reload()" class="btn btn-primary btn-sm"><i class="fa fa-refresh"></i> Reload</button>
+          </div>
+            
+      </div>
+    </div>
+</div>
+
+  <div id="container">
+<div class="container-fluid top-bg" >
   <div class="container container-full-wrapper">
     <div class="row">
       <div class="top-banner-btn">
-        <div class="btn1"><a href="#">Jackpot</a></div>
-        <div class="btn2"><a href="#">Keno</a></div>
+        <div class="btn1"><a href="#">120Card</a></div>
+        <div class="btn2"><a href="#">2 Digit</a></div>
       </div>
     </div>
   </div>
@@ -69,7 +114,7 @@
       <div class="col-md-6">
         <div class="menu-right">
           <ul>
-            <li>ID : 520001</li>
+            <li>ID : <?php echo $uid; ?></li>
             <li><a style="cursor:pointer;"  data-toggle="modal" data-target="#basicModal">BetDetails</a></li>
             <li><a style="cursor:pointer;"  data-toggle="modal" data-target="#ReportModal">Report</a></li>
             <li><a style="cursor:pointer;"  data-toggle="modal" data-target="#ResultModal">Result</a></li>
@@ -91,6 +136,9 @@
   margin-bottom: 0px !important;
   font-size: 13px;
 }
+.no {
+  float: left;
+}
 </style>
 
 
@@ -102,8 +150,9 @@
     <div class="row game-box-row-wrapper">
       <div class="col-md-4 co-4">
         <div class="wrapper-section-left">
-          <h4>Balance : <?php echo user_balance($_SESSION['uid']); ?></h4>
-          <h3>Time : <span style="color: #000;font-size: 20px;line-height: 25px;" id="time"></span></h3>
+          <h5 style="color:#fff;"><?php echo $_SESSION['uid']; ?></h5>
+          <h5 style="color:#fff;">Balance : <span id="point_id"><?php echo user_balance($_SESSION['uid']); ?></span> <a style="cursor:pointer;" onclick="toggle_hide()"><span id="showid" style="font-size:11px; color:yellow;">Hide</span></a></h5>
+          <h4 style="color:#fff;">Time : <span style="font-size: 20px;line-height: 25px;" id="time"></span></h4>
         </div>
       </div>
       <div class="col-md-4 co-4">
@@ -198,7 +247,7 @@
               <div class="game-box-title">
                 <div class="game-box-title-icon"> <img src="images/box1-icon1.png" class="img-fluid" alt=""> </div>
                 <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class" data-from="1" data-to="30">
+                  <input type="text" id="text" name="text" class="section_class numeric sc1" data-index="1" data-from="1" data-to="30">
                 </div>
               </div>
               <div class="game-box-wrapper2">
@@ -301,7 +350,7 @@
               <div class="game-box-title">
                 <div class="game-box-title-icon"> <img src="images/Dimond-icon/Dimond.png" class="img-fluid" alt=""> </div>
                 <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class" data-from="31" data-to="60">
+                  <input type="text" id="text" name="text" class="section_class numeric sc2" data-index="2" data-from="31" data-to="60">
                 </div>
               </div>
               <div class="game-box-wrapper2">
@@ -403,7 +452,7 @@
               <div class="game-box-title">
                 <div class="game-box-title-icon"> <img src="images/box-3-icon/Chiri.png" class="img-fluid" alt=""> </div>
                 <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class" data-from="61" data-to="90">
+                  <input type="text" id="text" name="text" class="section_class numeric sc3" data-index="3" data-from="61" data-to="90">
                 </div>
               </div>
               <div class="game-box-wrapper2">
@@ -503,7 +552,7 @@
               <div class="game-box-title">
                 <div class="game-box-title-icon"> <img src="images/Heart-icon/Heart.png" class="img-fluid" alt=""> </div>
                 <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class" data-from="91" data-to="120">
+                  <input type="text" id="text" name="text" class="section_class numeric sc4" data-index="4" data-from="91" data-to="120">
                 </div>
               </div>
               <div class="game-box-wrapper2">
@@ -575,13 +624,20 @@
       </style>
       <div class="col-md-3 last-3">
         <div class="Jackpot-wrapper">
-          <div class="jackpot-title-box">Jackpot</div>
+          <div class="jackpot-title-box">2 Digit</div>
           <div class="jackpot-box-section-scroll">
+            <div class="jackpot-roww" style="background-color: #fff;">
+              <p><?php echo $nex_time; ?></p>
+              </div>  
                       <?php 
-                        foreach ($response->ResultList as $key => $value) {                         
+                        foreach ($response->ResultList as $key => $value) {  
+                        $bonus = 1;
+                        if($value->bonus>1){
+                          $bonus = $value->bonus;
+                        }
                           ?>
                                <div class="jackpot-roww">
-                                <?php get_result_name_img($value->GameValue); ?>
+                                <?php echo ($value->GameValue); ?>
                                 <p><?php echo $value->GameTime; ?></p>            
                                </div>                             
                           <?php
@@ -595,6 +651,11 @@
         </div>
       </div>
     </div>
+    <style type="text/css">
+      .left-box-btn .left-box-btn1, .left-box-btn .left-box-btn2, .left-box-btn .left-box-btn3{
+        width: 72px !important;
+      }
+    </style>
  
             <input type="hidden" id="xvalue_id" value="1">
     <div class="row">
@@ -617,6 +678,13 @@
                 <p>210</p>
 
           </div>
+
+          <div class="left-box-btn1">
+            <div class="left-box-btn-wr">
+            <button onclick="select_qtyx(1)" id="btn1" type="button" class="btn  bottom_btn" style="background-color: #FE0E00;color: #fff;">1</button></div>
+                <p>105</p>
+
+          </div>
         </div>
       </div>
       <div class="col-md-3">
@@ -629,7 +697,7 @@
         <div class="bottom-btn-wrapper">
           <div class="bottom-btn-wrapper-row1">
             <div class="bottom-btn" onclick="clear_field()"><a style="cursor: pointer;"><img src="images/refresh-buttons1.png" class="img-fluid" alt="">Clear</a></div>
-            <div class="bottom-btn" onclick="buy_ticket()"><a style="cursor: pointer;">BUY</a></div>
+            <div class="bottom-btn" style="background-color:#FF1493" onclick="buy_ticket()"><a style="cursor: pointer; color: #000;">BUY</a></div>
           </div>
           <div class="bottom-btn-wrapper-row2">
             <div class="bottom-btn-wrapper-display-fix">
@@ -658,16 +726,17 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $(document).ready(function(){
-	var date_input = $('input[name="date"]'); //our date input has the name "date"
-	var container = "body";
-	var options = {
-		format: 'dd/mm/yyyy',
-		container: container,
-		todayHighlight: true,
-		autoclose: true,
-		language: 'el' 
-	};
-	date_input.datepicker(options);
+  var date_input = $('input[name="date"]'); //our date input has the name "date"
+  var container = "body";
+  var options = {
+    format: 'dd/mm/yyyy',
+    container: container,
+    todayHighlight: true,
+    autoclose: true,
+    language: 'el' 
+  };
+  date_input.datepicker(options);
+  select_qtyx(2);
 })
 
 /****** MENU jQuery ******/
@@ -692,66 +761,68 @@ jQuery(window).load(function(){
       jQuery(this).closest('li').siblings().find('span').removeClass('close-icon');
      });
   });
-});	
+}); 
 
 </script>
 
 
 <!---Printable Area---->
-<div id="printableArea" style="display:none;">
-    <div class="modal-body" >
-        <div style="width: 200px; border:1px solid #000;">
+<style>
+  #printableArea table tr td{
+    font-size: 12px !important;
+  }
+  #trans_id table tr td{
+    font-size: 12px !important;
+  }
+</style>
+<div id="printableArea" style="display:none; font-size: 12px;">
+        <div style="width: 180px;">
             <div >
-              <div style="border-bottom:1px solid #000;">
-              <table >
-                <tr>
-                  <td colspan="2">Date & Time: <span id="booking_date"></span></td>
-                </tr>
-                <tr>
-                  <td colspan="2" style="text-align: center;">Auction Trading</td>
-                </tr>
-                <tr>
-                  <td colspan="2" style="text-align: center; ">BROKING AND TRADING AUCTIONING CENTER(OPC) PVT LTD</td>
-                </tr>
-              </table>
-              </div>
-              <div style="padding:5px; border:1px solid #000; text-align: center;">TICKET DETAILS</div>
+           
               <table style="width:100%">
                 <tr>
-                  <td style="width:50%">Terminal:</td>
-                  <td><?php echo $_SESSION['uid']; ?></td>
+                  <td style="width:50%; font-size: 12px !important;">Jackpot</td>
+                  <td>:</td>
+                  <td style="font-size:12px !important;"><?php echo $_SESSION['uid']; ?></td>
                 </tr>
-                
+                 <!-- <tr>
+                  <td style="width:50%; font-size:12px !important;">Barcode</td>
+                  <td>:</td>
+                  <td style="font-size:12px !important;"><span id="trans_id"></span></td>
+                </tr> -->
+                <tr>  
+                    <td colspan="3" style="font-size:12px !important;">Barcode <br><span id="trans_id"></span></td>
+                </tr> 
                 <tr>
+                  <td style="font-size:12px !important;" colspan="3">120Card Game</td>
+                </tr>
+                <!-- <tr>
                   <td style="width:50%">Ticket Time</td>
                   <td><span id="ticket_time_id"></span></td>
-                </tr>
+                </tr> -->
                 <tr>
-                  <td style="width:50%">Draw Time</td>
-                  <td><span id="draw_id"></span></td>
+                  <td style="width:50%; font-size:12px !important;">Draw Time</td>
+                  <td>:</td>
+                  <td style="font-size:12px !important;"><span id="draw_id"></span></td>
                 </tr>
-                <tr>
-                  <td style="width:50%">Barcode</td>
-                  <td><span id="trans_id"></span></td>
-                </tr>
+               
               </table>
                
             </div>
-            <h4 style="width:100%; text-align: center; margin-bottom:0px">PARTICULARS</h4>
-            <div id="particulars" style="text-align: center;padding: 5px; border: 1px solid #000;">
+            <div id="particulars" style="text-align: center;padding: 5px; font-size: 12px !important;">
             </div>
-    <table style="width: 100%;text-align: center; margin-top: 20px;margin-right:90px !important" class="table-bordered">
+    <table style="width: 100%;text-align: center;margin-right:90px !important" class="table-bordered">
         <tr class="table-primary" style="float: left;margin-left: 5px;">
-            <th style="text-align:center">MRP: <strong id="current_rate"></strong></th>
-                <th style="text-align:center">Qty: <strong id="total_tickets"></strong></th>
-                    <th style="text-align:center">Total: <strong id="total_booking_amount"></strong></th>
+<!--             <th style="text-align:center">MRP: <strong id="current_rate"></strong></th>
+ -->                <td style="text-align:center; font-size:12px !important;">Qty: <span id="total_tickets"></span></td>
+                    <td style="text-align:center; font-size:12px !important;">Total: <span id="total_booking_amount"></span></td>
+                    <td style="font-size:12px !important;"><span id="ticket_time_id"></span></td>
                     </tr>
                 </table>
-                <br>
+                <div style="width:100%; font-size: 12px; text-align: center;">Results : www.jcash.top</div>
             </div>
         </div>
         <div>
-        </div>
     </div>
 
 <!---Printable Area---->
@@ -764,7 +835,6 @@ jQuery(window).load(function(){
       <div class="modal-header">
         <h4 class="modal-title" id="myModalLabel">BetDetails</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-       
       </div>
       <div class="modal-body" style="margin: 0px; padding: 2px;">
         <table class="table table" style="border-top: 0px; margin: 0px;">
@@ -772,7 +842,9 @@ jQuery(window).load(function(){
             <td  style="border-top: 0px;">
               <select name="report_type" class="form-control" id="report_type_id">
                 <option value="C">Current</option>
-                <option value="T">Today</option>
+                <option value="T">Barcode</option>
+                <option value="CAN">Cancelled</option>
+                <option value="CL">Claimed</option>
               </select>
             </td>
             
@@ -797,13 +869,13 @@ jQuery(window).load(function(){
         <h4 class="modal-title" id="myModalLabel">Report</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="font-size:13px;">
         <ul class="dropdown-menu-new">
           <div class="dropdown-menu-box  result-bg">
             <table class="table table">
           <tr>
-            <td style="width:35%;"><input value="<?php echo date("d-m-Y"); ?>" id="datefrom_id" placeholder="Date Select" data-date-format="dd-mm-yyyy" autocomplete="off" type="text" name="from_date" id="from_date_id" class="form-control datepicker2"></td>
-            <td style="width:35%;"><input value="<?php echo date("d-m-Y"); ?>" id="dateto_id" placeholder="Date Select" data-date-format="dd-mm-yyyy" autocomplete="off" type="text" name="from_date" id="to_date_id" class="form-control datepicker2"></td>
+            <td style="width:35%;"><input readonly value="<?php echo date("d-m-Y"); ?>" id="datefrom_id" placeholder="Date Select" data-date-format="dd-mm-yyyy" autocomplete="off" type="text" name="from_date" id="from_date_id" class="form-control datepicker2"></td>
+            <td style="width:35%;"><input readonly value="<?php echo date("d-m-Y"); ?>" id="dateto_id" placeholder="Date Select" data-date-format="dd-mm-yyyy" autocomplete="off" type="text" name="from_date" id="to_date_id" class="form-control datepicker2"></td>
             <td><button type="button" onclick="get_report()" class="btn btn-primary btn-sm">Show</button>
 <button class="btn btn-danger  btn-sm"  data-dismiss="modal"><i class="fa fa-times"></i></button>
             </td>
@@ -811,8 +883,8 @@ jQuery(window).load(function(){
         </table>
             <div class="game-report-btn-wr"><a href="#">Game Report</a></div>
             <div class="table-wrapper-box">
-             
-<span id="report_html" style="width:100%;"></span>            </div>
+              <span id="report_html" style="width:100%;"></span>            
+            </div>
           </div>
         </ul>
       </div>
@@ -960,8 +1032,9 @@ jQuery(window).load(function(){
     </div>
   </div>
 </div>
+</div>
 </body>
-
+<script src="js/script.js"></script>
 <script type="text/javascript">
     function show_report(){
       $("#myModal").modal('show');
@@ -969,11 +1042,13 @@ jQuery(window).load(function(){
     function sale_reports(){
       $("#myModal2").modal('show');
     }
-      $(".up_horizontal_class").change(function(e){
+    
+    $(".up_horizontal_class").keyup(function(e){
           //Updating the IDs//
           var from_input = Number($(this).data("from"));
           var to_input   = Number($(this).data("to"));
           var up_value   = Number($(this).val());
+          console.log(up_value);
           if(up_value>99){
             up_value = 99;
             $(this).val(up_value);
@@ -1000,14 +1075,15 @@ jQuery(window).load(function(){
           
       });
 
-      $(".section_class").change(function(e){
+      function section_class(e,up_value){
+        //console.log(up_value);
           //Updating the IDs//
-          var from_input = Number($(this).data("from"));
-          var to_input   = Number($(this).data("to"));
-          var up_value   = Number($(this).val());
+          var from_input = Number($(e).data("from"));
+          var to_input   = Number($(e).data("to"));
+          var up_value   = Number(up_value);
           if(up_value>99){
             up_value = 99;
-            $(this).val(up_value);
+            $(e).val(up_value);
           }
           for(z=from_input; z<=to_input; z++ ){
             var cur_input_val = up_value;
@@ -1029,9 +1105,9 @@ jQuery(window).load(function(){
             });
           }
           
-      });
-      
-      $(".inner_input_vertical").change(function(e){
+      };
+
+      $(".inner_input_vertical").keyup(function(e){
           //Updating the IDs//
           var from_input = Number($(this).data("from"));
           var to_input   = Number($(this).data("to"));
@@ -1100,11 +1176,30 @@ jQuery(window).load(function(){
         duration = moment.duration(duration - interval, 'milliseconds');
         //Condition for Reload//
         if(duration.minutes()==0 && duration.seconds()<10){
-          $("#background_id").show();
+          myTimer();
+          
+         
+          //$("#result_animation").show();
+          <?php 
+            if($is_manual==0){
+          ?>
+          $("#result_animation").show();
+          <?php }
+          ?>
+
         }
         if(duration.seconds()<-4){
           clearInterval(this);
+          <?php 
+            if($is_manual==0){
+          ?>
+          get_result_refresh();
+         <?php }else{
+          ?>
           location.reload();
+          <?php
+         } ?>
+          //location.reload();
           
         }
         $('.countdown').text(duration.minutes() + ":" + duration.seconds())
@@ -1138,28 +1233,31 @@ jQuery(window).load(function(){
           data:data,
           success: function(e){
             e = JSON.parse(e);
-            // if(e.is_error==0){
-            //  swal("Success!", "Purchase completed", "success");
-            //  $("#point_id").html(e.message.SalesDetails[0]['Balance']);
-            // }else{
-            //  swal(e.message, '', "warning");
-            // }
+            if(e.is_error==0){
+             //swal("Success!", "Purchase completed", "success");
+             $("#point_id").html(e.message.SalesDetails[0]['Balance']);
+            }else{
+             swal(e.message, '', "warning");
+            }
             print_ticket(e.message.SalesDetails[0]['Barcode']);
             //console.log(e.message.SalesDetails[0]['Barcode']);
             clear_field();
-            $(".draw_type").val(1);
+            $(".draw_type[value=1]").prop("checked","true");
+
+            //$('input[name="draw_status"]:checked')
+            //$(".draw_type").val(1);
             $("#submit_btn_id").show();
             $("#wait_id").hide();
           }
         })
       }
       $(".numeric, .draw_type").change(function(){
-        var tot_qty = 0;
-        var tot_amt = 0;
-        //console.log($(this).val());
-        if($(this).val()>99){
-          $(this).val(99);
-        }
+            var tot_qty = 0;
+            var tot_amt = 0;
+            console.log($(this).val());
+            if($(this).val()>99){
+              $(this).val(99);
+            }
             var draw_type = Number($('input[name="draw_status"]:checked').val());
             $('.qty_field').each(function(i, obj) {
                 if($(this).val()!=""){              
@@ -1167,7 +1265,7 @@ jQuery(window).load(function(){
                 }           
             });
             var xvalue = Number($("#xvalue_id").val());
-            tot_amt = tot_qty*2*draw_type*xvalue;
+            tot_amt = tot_qty*1*draw_type*xvalue;
             $("#qtyID").html(tot_qty);
             $("#amtID").html(tot_amt);
         
@@ -1260,7 +1358,7 @@ jQuery(window).load(function(){
    $(document).ready(function(eOuter) {
      $('input').on('keydown', function(eInner) {
          var keyValue = eInner.which; //enter key
-         if (keyValue == 39 || keyValue == 37 || keyValue == 38 || keyValue == 40){ 
+         if (keyValue == 39 || keyValue == 37 || keyValue == 38 || keyValue == 40){
              var tabindex = Number($(this).attr('tabindex'));
              if(keyValue == 39){ 
                 //Right Key
@@ -1270,11 +1368,16 @@ jQuery(window).load(function(){
                  tabindex--;
              }else if(keyValue == 38){ 
                 //Up Key
-                 tabindex = tabindex-28;
+                if(tabindex<=28){
+                  var upindex= Math.ceil(tabindex/7);
+                    $('.section_class[data-index="'+upindex+'"]').focus();
+                }
+                tabindex = tabindex-28;
              }else if(keyValue == 40){
                 //Down Key
                  tabindex = tabindex+28;
              }
+
              //CHecking if length available//
              if(!$('[tabindex=' + tabindex + ']').length){
                if(keyValue==39){
@@ -1287,6 +1390,47 @@ jQuery(window).load(function(){
               $('[tabindex=' + tabindex + ']').focus();
          }
      });
+     $(".section_class").on('keyup', function(eInner) {
+        var index =$(this).data("index");
+        var keyValue = eInner.which; //enter key
+        
+        if (keyValue == 39 || keyValue == 37 || keyValue == 38 || keyValue == 40){
+          if(keyValue == 39){ 
+                //Right Key
+                 index++;
+                 if($('.section_class[data-index="'+(index)+'"]').length){
+                  $('.section_class[data-index="'+(index)+'"]').focus();
+                 }else{
+                  $('.section_class[data-index="1"]').focus();
+                 }
+             }else if(keyValue == 37){ 
+                //Left Key
+                 index--;
+                if($('.section_class[data-index="'+(index)+'"]').length){
+                 $('.section_class[data-index="'+(index)+'"]').focus();
+                }else{
+                  $('.section_class[data-index="4"]').focus();
+                }
+             }else if(keyValue == 38){
+                //Up Key
+                 //tabindex = tabindex-28;
+             }else if(keyValue == 40){
+                //Down Key
+                if(index==1){
+                  $('[tabindex=2]').focus();
+                }else if(index==2){
+                  $('[tabindex=9]').focus();
+                }else if(index==3){
+                  $('[tabindex=16]').focus();
+                }else if(index==4){
+                  $('[tabindex=23]').focus();
+                }
+             }
+        }else{
+          section_class(this,$(this).val());
+        }
+        //console.log(index);
+     });
   });
    function print_ticket(BARCODE_ID){
       var data = "print_ticket&barcode="+BARCODE_ID;
@@ -1296,11 +1440,11 @@ jQuery(window).load(function(){
         url:"ajax.php",
         success: function(e){
           e = JSON.parse(e);          
-          $("#trans_id").html(e.barcode);
+          $("#trans_id").html(e.display_barcode);
           $("#booking_date").html(e.booking_date+", "+e.drawtime);
           $("#current_rate").html(e.current_rate);
           $("#total_tickets").html(e.total_tickets);
-          $("#total_booking_amount").html(Number(e.total_tickets)*Number(e.current_rate));
+          $("#total_booking_amount").html(Number(e.total_booking_amount));
           $("#particulars").html(e.ticket_details);
           $("#draw_id").html(e.drawtime);
           $("#ticket_time_id").html(e.booking_time);
@@ -1318,18 +1462,17 @@ jQuery(window).load(function(){
         return true;
     }
     function requestFullScreen(element) {
-      // element which needs to enter full-screen mode
-      // var element = document.querySelector("#container");
+      var element = document.querySelector("#container");
 
-      // // make the element go to full-screen mode
-      // element.requestFullscreen()
-      //   .then(function() {
-      //     // element has entered fullscreen mode successfully
-      //   })
-      //   .catch(function(error) {
-      //     // element could not enter fullscreen mode
-      //   });
-      //   $("#FullScreenModal").modal("hide");
+      // make the element go to full-screen mode
+      element.requestFullscreen()
+        .then(function() {
+          // element has entered fullscreen mode successfully
+        })
+        .catch(function(error) {
+          // element could not enter fullscreen mode
+        });
+        $("#FullScreenModal").modal("hide");
     }
 
     function exitFullScreen(){
@@ -1345,7 +1488,7 @@ jQuery(window).load(function(){
     }
 $('#searchid').select2({        
       ajax: {
-          url: "https://www.pubgtime.com/api/BarcodeSearchApi.php",
+          url: "https://jpot.top/ajax.php",
           dataType: 'json',
           delay: 100,
           data: function (params) {
@@ -1353,7 +1496,8 @@ $('#searchid').select2({
                   barcodeID: params.term, // search term
                   ResultToken: 'cmxwzd3e5wreecv8c7mnbcx0hsm5u',
                   UserID: '<?php echo $uid; ?>',
-                  GameId:'11',
+                  GameId:'12',
+                  GetBarcode:'1',
               };
           },
           processResults: function (data) {
@@ -1384,6 +1528,9 @@ $('#searchid').select2({
             e = JSON.parse(e);
             $("#searchid").val("").trigger("change");
             if(e.error){
+              if(e.error=="No Winning amount for this ticket!"){
+                e.error = "No Prize";
+              }
               swal(e.error, "", "error");
             }else{            
               var balance = Number(e.terminal_balance);
@@ -1425,13 +1572,116 @@ $('#searchid').select2({
     })
   }
   setInterval(function() { updateLifetimeToken(); }, 10000);
-  $("body").keypress(function(e){
-      requestFullScreen('document.body');
-  });
+  // $("body").keypress(function(e){
+  //     requestFullScreen('document.body');
+  // });
   function select_qtyx(VAL){
     $(".checked_qty").remove();
     $("#btn"+VAL).html("<i class='fa fa-check-circle checked_qty'></i> "+VAL);
     $("#xvalue_id").val(VAL);
   }
-</script>
+
+  function printreport(elem) {
+
+
+var mywindow = window.open('', 'self', 'height=120,width=400');
+        mywindow.document.write(document.getElementById(elem).innerHTML);
+        mywindow.document.close();
+        mywindow.focus();
+        mywindow.print();
+        //mywindow.close();
+        return true;
+
+
+     // var printContents = document.getElementById(divName).innerHTML;
+     // var originalContents = document.body.innerHTML;
+
+     // document.body.innerHTML = printContents;
+
+     // window.print();
+
+     // document.body.innerHTML = originalContents;
+}
+
+  function generateRandomInteger(min, max) {
+    return Math.floor(min + Math.random()*(max - min + 1))
+  }
+    var ccc=0;   
+   // var myInterval = "";
+   //  function start_result_animation(){
+   //     myInterval = setInterval(myTimer, 100);
+   //  }
+    // $(document).ready(function(){
+
+    // });
+    var is_result_declared = 0;
+    var result_value = "";
+    var myIntervalStart = 0;
+    var myIntervalStart2 = 0;
+    function myTimer(){
+      if(myIntervalStart==0){
+        var myInterval = setInterval(myTimer, 100);
+        myIntervalStart = 1;
+      }
+      ccc = generateRandomInteger(1, 120);
+      //console.log(ccc);
+      //var total_sum = 100*120;
+      if(is_result_declared==1){
+       // console.log(ccc);
+        //operator = operator*-1;
+        clearInterval(myInterval);
+        $("#display_num").html(numArr[result_value]);
+       // $(".animate").transition({y: -ccc+'px'});
+      }else{
+        $("#display_num").html(numArr[ccc]);
+      }
+      
+    }
+    var is_loaded = true;
+    function get_result_refresh(){
+      if(myIntervalStart2==0){
+        var myInterval2 = setInterval(get_result_refresh, 2000);
+        myIntervalStart2 = 1;
+      }
+      if(is_loaded==true){
+        is_loaded = false;
+        var data = "result_declared";
+        $.ajax({
+          type:"GET",
+          data:data,
+          url:"ajax.php",
+          success: function(e){
+            if(e!=0){
+              is_result_declared = 1;
+              result_value = e;
+              clearInterval(myInterval2);
+              is_loaded = true;
+              setTimeout(() => {
+                location.reload();
+              }, "5000")
+            }
+          }
+        })
+      }
+    }
+    //get_result_refresh();
+    
+    //start_result_animation();
+    function toggle_hide(){
+      var status = $("#showid").text();
+      if(status=='Hide'){
+        $("#point_id").hide();
+        $("#showid").html('show');
+      }else{
+        $("#point_id").show();
+        $("#showid").html('Hide');
+      }
+    }
+    //$("#result_animation").show();
+
+    //myTimer();
+          
+         
+          //$("#result_animation").show();
+  </script>
 </html>

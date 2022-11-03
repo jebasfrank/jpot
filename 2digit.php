@@ -9,12 +9,13 @@
   $url = "https://www.pubgtime.com/api/ResultListAPI.php";
   $post = array();
   $uid = $_SESSION['uid'];
+  $gameID = 8;
   $lifetimeToken = $_SESSION['lifetime_token'];
   $post = [
     'ResultListToken' => 'cmxwzd3e5wreecv8c7mnbcx0hsm5u',
     'UserID' => $uid,
     'DeviceID' => rand(999,9999),
-    'gameID' => 8,
+    'gameID' => $gameID,
     'LoginToken' => $lifetimeToken
    ];
    $response = post_api_call($post,$url);
@@ -28,7 +29,7 @@
    $url = "https://www.pubgtime.com/api/NextDrawTimeAPI.php";
    $post = array();
    $post['TimeToken'] = "3reerntbk4cvxvdner22emul9kx7czv";
-   $post['GameId'] = 8;
+   $post['GameId'] = $gameID;
    $response2 = json_Decode(post_api_call($post,$url));
    $nex_time = "";
    if(isset($response2->nextDrawTimeStamp)){
@@ -38,7 +39,7 @@
    $url = "https://www.pubgtime.com/api/ismanualApi.php";
    $post = array();
    $post['ValueToken'] = "3reerntbk4cvxvdner22emul9kx7czv";
-   $post['GameID'] = 8;
+   $post['GameID'] = $gameID;
    $response3 = json_Decode(post_api_call($post,$url));
    $is_manual = 0;
    if(isset($response3->is_manual)){
@@ -624,7 +625,7 @@
       </style>
       <div class="col-md-3 last-3">
         <div class="Jackpot-wrapper">
-          <div class="jackpot-title-box">2 Digit</div>
+          <div class="jackpot-title-box">120Card</div>
           <div class="jackpot-box-section-scroll">
             <div class="jackpot-roww" style="background-color: #fff;">
               <p><?php echo $nex_time; ?></p>
@@ -635,9 +636,10 @@
                         if($value->bonus>1){
                           $bonus = $value->bonus;
                         }
+                        //print_r($value);
                           ?>
                                <div class="jackpot-roww">
-                                <?php echo ($value->GameValue); ?>
+                                <?php get_result_name_img($value->GameValue,$bonus); ?>
                                 <p><?php echo $value->GameTime; ?></p>            
                                </div>                             
                           <?php
@@ -1036,6 +1038,7 @@ jQuery(window).load(function(){
 </body>
 <script src="js/script.js"></script>
 <script type="text/javascript">
+   var GAMEID = '<?php echo $gameID ?>';
     function show_report(){
       $("#myModal").modal('show');
     }
@@ -1226,7 +1229,7 @@ jQuery(window).load(function(){
         }
         all_particulars = (all_particulars.join(';'));
         var draw_type = $('input[name="draw_status"]:checked').val();
-        var data="buy_ticket&all_particulars="+all_particulars+"&draw_type="+draw_type;
+        var data="buy_ticket&all_particulars="+all_particulars+"&draw_type="+draw_type+"&GAMEID="+GAMEID;
         $.ajax({
           type:"POST",
           url:"ajax.php",
@@ -1280,7 +1283,7 @@ jQuery(window).load(function(){
         var from_date = $("#datefrom_id").val();
         var to_date   = $("#dateto_id").val();
         if(from_date!="" && to_date!=""){
-            var data = "get_report&datefrom="+from_date+"&to_date="+to_date;
+            var data = "get_report&datefrom="+from_date+"&to_date="+to_date+"&GAMEID="+GAMEID;
             $.ajax({
               type:"GET",
               url:"ajax.php",
@@ -1297,7 +1300,7 @@ jQuery(window).load(function(){
         $("#report_html2").html("<div style='text-align:center'><i class='fa fa-spin fa-spinner'></i> Please wait...</div>");
         var report_type = $("#report_type_id").val();
         var last_result_time_id = $("#last_result_time_id").val();
-        var data = "get_sale_report&report_type="+report_type+"&last_result_time_id="+last_result_time_id;
+        var data = "get_sale_report&report_type="+report_type+"&last_result_time_id="+last_result_time_id+"&GAMEID="+GAMEID;
         $.ajax({
           type:"GET",
           url:"ajax.php",
@@ -1433,7 +1436,7 @@ jQuery(window).load(function(){
      });
   });
    function print_ticket(BARCODE_ID){
-      var data = "print_ticket&barcode="+BARCODE_ID;
+      var data = "print_ticket&barcode="+BARCODE_ID+"&GAMEID="+GAMEID;
       $.ajax({
         type:"GET",
         data:data,
@@ -1496,7 +1499,7 @@ $('#searchid').select2({
                   barcodeID: params.term, // search term
                   ResultToken: 'cmxwzd3e5wreecv8c7mnbcx0hsm5u',
                   UserID: '<?php echo $uid; ?>',
-                  GameId:'12',
+                  GameId:GAMEID,
                   GetBarcode:'1',
               };
           },
@@ -1561,7 +1564,7 @@ $('#searchid').select2({
   }
   function get_result_report(){
     var dateFrom = $("#datefromresult_id").val();
-    var data = "get_result&date="+dateFrom;
+    var data = "get_result&date="+dateFrom+"&GAMEID="+GAMEID;
     $.ajax({
       type:"GET",
       data:data,
@@ -1645,7 +1648,7 @@ var mywindow = window.open('', 'self', 'height=120,width=400');
       }
       if(is_loaded==true){
         is_loaded = false;
-        var data = "result_declared";
+        var data = "result_declared"+"&GAMEID="+GAMEID;
         $.ajax({
           type:"GET",
           data:data,

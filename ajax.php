@@ -36,7 +36,7 @@
   if(isset($_POST['buy_ticket'])){
     $all_particulars = $_POST['all_particulars'];
     $userID = $_SESSION['uid'];
-    $gameID = 12;
+    $gameID = $_POST['GAMEID'];
     $draw_type = $_POST['draw_type'];
     $SalesToken = "3reerntbk4cvxvdner22emul9kx7czv";
     $post = [
@@ -67,7 +67,7 @@
     $datefrom = strtotime($_GET['datefrom']." 00:00:00");
     $to_date  = strtotime($_GET['to_date']." 23:59:59");
     $uid = $_SESSION['uid'];
-    $GameId = 12;
+    $GameId = $_GET['GAMEID'];
     $ReportToken = "vmrwzd3e5wreecv8c7mnbcx0hsm3d";
     $url = "https://www.pubgtime.com/api/ReportAPI.php";
     $post = [
@@ -170,7 +170,7 @@
     $report_type_id = $_GET['report_type'];
     $last_result_time_id = $_GET['last_result_time_id'];
     $UserID = $_SESSION['uid'];
-    $GameId = 12;
+    $GameId = $_GET['GAMEID'];
     if($report_type_id=="C"){
       $FromTimeStamp = $last_result_time_id;
       $toTimeStamp   = time();
@@ -286,7 +286,7 @@ if($value->Status!='Canceled'){
     $post = [
       'ResultToken' => 'vmrwzd3e5wreecv1c7mnbcx0hsm3k',
       'BarcodeId' => $barcode,
-      'GameId' => 12
+      'GameId' => $_GET['GAMEID']
      ];
      $response = post_api_call($post,$url);
      $response = json_decode($response);
@@ -355,7 +355,7 @@ if($value->Status!='Canceled'){
   if(isset($_GET['get_result'])){
     $result_date =$_GET['date'];
     $ResultListToken = "cmxwzd3e5wreecv8c7mnbcx0hsm5u";
-    $gameID = 12;
+    $gameID = $_GET['GAMEID'];
     $url = "https://www.pubgtime.com/api/ResultListAPI.php";
     $post = [
       'result_date' => $result_date,
@@ -406,7 +406,7 @@ if($value->Status!='Canceled'){
   if(isset($_GET['result_declared'])){
     //$result_date =$_GET['date'];
     $ResultListToken = "cmxwzd3e5wreecv8c7mnbcx0hsm5u";
-    $gameID = 12;
+    $gameID = $_GET['GAMEID'];
     $url = "https://www.pubgtime.com/api/ResultAPI.php";
     $post = [
       'UserID' =>  $uid,

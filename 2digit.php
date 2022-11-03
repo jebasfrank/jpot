@@ -474,7 +474,7 @@
               <p><?php echo $nex_time; ?></p>
               </div>  
                       <?php 
-                      if(isset($response->ResultListf)){
+                      if(isset($response->ResultList)){
                         foreach ($response->ResultList as $key => $value) {  
                         $bonus = 1;
                         if($value->bonus>1){

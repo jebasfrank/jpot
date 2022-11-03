@@ -483,7 +483,7 @@
                         //print_r($value);
                           ?>
                                <div class="jackpot-roww">
-                                <?php get_result_name_img($value->GameValue,$bonus); ?>
+                                <?php if($bonus>1){ echo ($value->GameValue).'x'.$bonus;}else{ echo ($value->GameValue); } ?>
                                 <p><?php echo $value->GameTime; ?></p>            
                                </div>                             
                           <?php

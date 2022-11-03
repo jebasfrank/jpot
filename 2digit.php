@@ -57,7 +57,7 @@
   <link rel="stylesheet" href="css/style.css">
   <!--font-awesome CSS-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Card Game</title>
+  <title>2digit Game</title>
   <!--Check-in And Check-out Date Range Picker CSS-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.min.css">
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
@@ -94,8 +94,8 @@
   <div class="container container-full-wrapper">
     <div class="row">
       <div class="top-banner-btn">
-        <div class="btn1"><a href="#">120Card</a></div>
-        <div class="btn2"><a href="#">2 Digit</a></div>
+        <div class="btn2"><a href="app.php">120Card</a></div>
+        <div class="btn1"><a href="#">2 Digit</a></div>
       </div>
     </div>
   </div>
@@ -191,7 +191,7 @@
     </div>
   </div>
 </div>
-
+<div style="margin:2px;">&nbsp;</div>
 <style>
   .game-input-group-row ul li img{
     padding: 5px;
@@ -204,10 +204,10 @@
     line-height: 40px;
   }
   .game-row-box .game-row-1 .game-input-group-row ul li{
-    margin-bottom: 40px;
+    margin-bottom: 24px;
   }
   .game-row-box .game-row-1 .game-input-group-row{
-    margin-top: 87px;
+    margin-top: 72px;
   }
 </style>
       <input type="hidden" name="last_result_time" value="<?php echo $last_time_stamp; ?>" id="last_result_time_id">
@@ -215,40 +215,44 @@
 <div class="container-fluid wrapper-section3">
   <div class="container container-full-wrapper">
     <div class="row game-box-row">
-      <div class="col-md-3">
+      <div class="col-md-5">
         <div class="game-row-box">
           <div class="game-row-1">
             <div class="game-input-group-row">
               <?php $index= 1; ?>
               <ul>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="1" data-to="6" class="outer_input input-rr up_horizontal_class numeric">
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="1" data-to="10" class="outer_input input-rr up_horizontal_class numeric">
                 </li>
-                <?php $index= $index+28; ?>
+                <?php $index= $index+22; ?>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="7" data-to="12" class="outer_input input-rr up_horizontal_class numeric input-rr">                
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="11" data-to="20" class="outer_input input-rr up_horizontal_class numeric input-rr">                
                 </li>
 
-                <?php $index= $index+28; ?>
+                <?php $index= $index+22; ?>
 
                 <li>
-                  <input maxlength="2" type="text" data-from="13" tabindex="<?php echo $index; ?>" data-to="18" class="outer_input input-rr  up_horizontal_class numeric input-rr">
+                  <input maxlength="2" type="text" data-from="21" tabindex="<?php echo $index; ?>" data-to="30" class="outer_input input-rr  up_horizontal_class numeric input-rr">
                 </li>
-                              <?php $index= $index+28; ?>
+                              <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="19" data-to="24" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
- <?php $index= $index+28; ?>
+<input maxlength="2" type="text" data-from="31" data-to="40" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+ <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="25" tabindex="<?php echo $index; ?>" data-to="30" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+<input maxlength="2" type="text" data-from="41" tabindex="<?php echo $index; ?>" data-to="50" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
               </ul>
             </div>
           </div>
+          <style>
+            .inpou-box-top{
+              height: 33px;
+            }
+          </style>
           <div class="game-row-2">
             <div class="game-row-box-wrapper">
               <div class="game-box-title">
-                <div class="game-box-title-icon"> <img src="images/box1-icon1.png" class="img-fluid" alt=""> </div>
                 <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class numeric sc1" data-index="1" data-from="1" data-to="30">
+                  &nbsp;
                 </div>
               </div>
               <div class="game-box-wrapper2">
@@ -257,18 +261,18 @@
                   <ul>
                     <?php 
                       $tab_index= 1;
-                        for($i=1; $i<=30; $i++){
+                        for($i=1; $i<=50; $i++){
                           $tab_index++;
                       ?>
                     <li>
-                      <img src="images/box-1-icon/<?php echo $i; ?>.png" class="img-fluid" alt="" >
+                      <?php echo $i; ?>
                       <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i; ?>" type="text" id="num_id_<?php echo $i; ?>" name="num<?php echo $i; ?>" class="inner_input numeric qty_field input-rr">
 
                     </li>
 
                     <?php 
-                        if($i%6==0){
-                          $tab_index = $tab_index+22;
+                        if($i%10==0){
+                          $tab_index = $tab_index+12;
                           ?>
                         </div>
                           </ul>
@@ -286,30 +290,46 @@
                 
               </div>
               <div class="game-input-group-row">
-                <?php $index=142; ?>
+                <?php $index=112; ?>
                 <ul>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="1" data-to="25" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="1" data-to="41" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="2" data-to="26" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="2" data-to="42" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="3" data-to="27" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="3" data-to="43" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="4" data-to="28" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="4" data-to="44" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="5" data-to="29" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="5" data-to="45" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="6" data-to="30" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="6" data-to="46" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="7" data-to="47" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="8" data-to="48" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="9" data-to="49" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="10" data-to="50" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                 </ul>
               </div>
@@ -317,41 +337,40 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-5">
         <div class="game-row-box">
           <div class="game-row-1">
             <div class="game-input-group-row">
               
-                 <?php $index= 8; ?>
+                 <?php $index= 12; ?>
               <ul>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="31" data-to="36" class="outer_input input-rr up_horizontal_class numeric">
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="51" data-to="60" class="outer_input input-rr up_horizontal_class numeric">
                 </li>
-                <?php $index= $index+28; ?>
+                <?php $index= $index+22; ?>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="37" data-to="42" class="outer_input input-rr up_horizontal_class numeric input-rr">                
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="61" data-to="70" class="outer_input input-rr up_horizontal_class numeric input-rr">                
                 </li>
 
-                <?php $index= $index+28; ?>
+                <?php $index= $index+22; ?>
 
                 <li>
-                  <input maxlength="2" type="text" data-from="43" tabindex="<?php echo $index; ?>" data-to="48" class="outer_input input-rr  up_horizontal_class numeric input-rr">
+                  <input maxlength="2" type="text" data-from="71" tabindex="<?php echo $index; ?>" data-to="80" class="outer_input input-rr  up_horizontal_class numeric input-rr">
                 </li>
-  <?php $index= $index+28; ?>
+  <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="49" data-to="54" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
- <?php $index= $index+28; ?>
+<input maxlength="2" type="text" data-from="81" data-to="90" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+ <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="55" tabindex="<?php echo $index; ?>" data-to="60" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+<input maxlength="2" type="text" data-from="91" tabindex="<?php echo $index; ?>" data-to="100" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
                 </ul>
             </div>
           </div>
           <div class="game-row-2">
             <div class="game-row-box-wrapper">
               <div class="game-box-title">
-                <div class="game-box-title-icon"> <img src="images/Dimond-icon/Dimond.png" class="img-fluid" alt=""> </div>
                 <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class numeric sc2" data-index="2" data-from="31" data-to="60">
+                  
                 </div>
               </div>
               <div class="game-box-wrapper2">
@@ -359,17 +378,17 @@
                 <div class="game-input-group-row">
                   <ul>
                     <?php 
-                      $tab_index= 8;
-                        for($i=1; $i<=30; $i++){
+                      $tab_index= 12;
+                        for($i=51; $i<=100; $i++){
                           $tab_index++;
                       ?>
                       <li>
-                        <img src="images/Dimond-icon/dimod-<?php echo $i; ?>.png" class="img-fluid" alt="">
-                          <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i+30; ?>" type="text" id="num_id_<?php echo ($i+30); ?>" name="num<?php echo $i+30; ?>" class="inner_input numeric qty_field input-rr">
+                        <?php echo $i; ?>
+                          <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i; ?>" type="text" id="num_id_<?php echo ($i); ?>" name="num<?php echo $i; ?>" class="inner_input numeric qty_field input-rr">
                       </li>
                     <?php 
-                      if($i%6==0){
-                        $tab_index = $tab_index+22;
+                      if($i%10==0){
+                        $tab_index = $tab_index+12;
                         ?>
                         </div>
                           </ul>
@@ -386,31 +405,49 @@
                 
                
               </div>
+              
+
               <div class="game-input-group-row">
-                <?php $index=149; ?>
+                <?php $index=123; ?>
                 <ul>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="31" data-to="55" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="51" data-to="91" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="32" data-to="56" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="52" data-to="92" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="33" data-to="57" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="53" data-to="93" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="34" data-to="58" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="54" data-to="94" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="35" data-to="59" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="55" data-to="95" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="36" data-to="60" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="56" data-to="96" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="57" data-to="97" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="58" data-to="98" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="59" data-to="99" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="60" data-to="100" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                 </ul>
               </div>
@@ -418,219 +455,26 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3">
-        <div class="game-row-box">
-          <div class="game-row-1">
-            <div class="game-input-group-row">
-
-
-              <?php $index= 15; ?>
-              <ul>
-                <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="61" data-to="66" class="outer_input input-rr up_horizontal_class numeric">
-                </li>
-                <?php $index= $index+28; ?>
-                <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="67" data-to="72" class="outer_input input-rr up_horizontal_class numeric input-rr">                
-                </li>
-
-                <?php $index= $index+28; ?>
-
-                <li>
-                  <input maxlength="2" type="text" data-from="73" tabindex="<?php echo $index; ?>" data-to="78" class="outer_input input-rr  up_horizontal_class numeric input-rr">
-                </li>
-  <?php $index= $index+28; ?>
-                <li>
-<input maxlength="2" type="text" data-from="79" data-to="84" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
- <?php $index= $index+28; ?>
-                <li>
-<input maxlength="2" type="text" data-from="85" tabindex="<?php echo $index; ?>" data-to="90" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
-                </ul>
-            </div>
-          </div>
-          <div class="game-row-2">
-            <div class="game-row-box-wrapper">
-              <div class="game-box-title">
-                <div class="game-box-title-icon"> <img src="images/box-3-icon/Chiri.png" class="img-fluid" alt=""> </div>
-                <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class numeric sc3" data-index="3" data-from="61" data-to="90">
-                </div>
-              </div>
-              <div class="game-box-wrapper2">
-                
-                <div class="game-input-group-row">
-                  <ul>
-
-                    <?php 
-                      $tab_index= 15;
-                        for($i=1; $i<=30; $i++){
-                          $tab_index++;
-                      ?>
-                      <li>
-                        <img src="images/box-3-icon/Chiri-<?php echo $i; ?>.png" class="img-fluid" alt="">
-                          <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i+60; ?>" type="text" id="num_id_<?php echo ($i+60); ?>" name="num<?php echo $i+60; ?>" class="inner_input numeric qty_field input-rr">
-                      </li>
-                    <?php 
-                      if($i%6==0){
-                        $tab_index = $tab_index+22;
-                        ?>
-                        </div>
-                          </ul>
-                          <div class="game-input-group-row">
-                        <ul>
-                        <?php
-                        }
-                     } 
-                     ?>
-             
-                    
-                  </ul>
-                </div>
-                
-              </div>
-              <div class="game-input-group-row">
-                <?php $index=156; ?>
-                <ul>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="61" data-to="85" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="62" data-to="86" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="63" data-to="87" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="64" data-to="88" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="65" data-to="89" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="66" data-to="90" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="game-row-box">
-          <div class="game-row-1">
-            <div class="game-input-group-row">
-              <?php $index= 22; ?>
-              <ul>
-                <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="91" data-to="96" class="outer_input input-rr up_horizontal_class numeric">
-                </li>
-                <?php $index= $index+28; ?>
-                <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="97" data-to="102" class="outer_input input-rr up_horizontal_class numeric input-rr">                
-                </li>
-
-                <?php $index= $index+28; ?>
-
-                <li>
-                  <input maxlength="2" type="text" data-from="103" tabindex="<?php echo $index; ?>" data-to="108" class="outer_input input-rr  up_horizontal_class numeric input-rr">
-                </li>
-  <?php $index= $index+28; ?>
-                <li>
-<input maxlength="2" type="text" data-from="109" data-to="114" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
- <?php $index= $index+28; ?>
-                <li>
-<input maxlength="2" type="text" data-from="115" tabindex="<?php echo $index; ?>" data-to="120" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
-                </ul>
-            </div>
-          </div>
-          <div class="game-row-2">
-            <div class="game-row-box-wrapper">
-              <div class="game-box-title">
-                <div class="game-box-title-icon"> <img src="images/Heart-icon/Heart.png" class="img-fluid" alt=""> </div>
-                <div class="inpou-box-top">
-                  <input type="text" id="text" name="text" class="section_class numeric sc4" data-index="4" data-from="91" data-to="120">
-                </div>
-              </div>
-              <div class="game-box-wrapper2">
-               
-                <div class="game-input-group-row">
-                  <ul>
-                   <?php 
-                      $tab_index= 22;
-                        for($i=1; $i<=30; $i++){
-                          $tab_index++;
-                      ?>
-                      <li>
-                        <img src="images/Heart-icon/Heart-<?php echo $i; ?>.png" class="img-fluid" alt="">
-                          <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i+90; ?>" type="text" id="num_id_<?php echo ($i+90); ?>" name="num<?php echo $i+90; ?>" class="inner_input numeric qty_field input-rr">
-                      </li>
-                    <?php 
-                      if($i%6==0){
-                        $tab_index = $tab_index+22;
-                        ?>
-                        </div>
-                          </ul>
-                          <div class="game-input-group-row">
-                        <ul>
-                        <?php
-                        }
-                     } 
-                     ?>
-                </div>
-                
-
-              </div>
-
-              <div class="game-input-group-row">
-              <?php $index=163; ?>
-                <ul>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="91" data-to="115" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="92" data-to="116" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="93" data-to="117" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="94" data-to="118" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="95" data-to="119" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="96" data-to="120" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                </ul>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+     
       <style>
         .Jackpot-wrapper{
           border: none;
         }
+        .jackpot-box-section-scroll{
+          height: 309px !important;
+          overflow-x: hidden;
+        }
       </style>
-      <div class="col-md-3 last-3">
+      <div class="col-md-2">
         <div class="Jackpot-wrapper">
-          <div class="jackpot-title-box">120Card</div>
+          <div class="jackpot-title-box">2 Digit</div>
           <div class="jackpot-box-section-scroll">
             <div class="jackpot-roww" style="background-color: #fff;">
               <p><?php echo $nex_time; ?></p>
               </div>  
                       <?php 
+                      if(isset($response->ResultListf)){
                         foreach ($response->ResultList as $key => $value) {  
                         $bonus = 1;
                         if($value->bonus>1){
@@ -644,6 +488,7 @@
                                </div>                             
                           <?php
                         }
+                      }
                       ?>
 
 
@@ -938,102 +783,7 @@ jQuery(window).load(function(){
 </div>
 
 
-<!-- Result  modal -->
-<div class="modal fade" id="basicModal-1" tabindex="-1" role="dialog" aria-labelledby="basicModal-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Result</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-      </div>
-      <div class="modal-body">
-        <ul class="dropdown-menu-new scroll-class">
-          <div class="dropdown-menu-box report-bg">
-            <div class="dropdown-menu-box-top-box t-wrapper-tow">
-              <div class="select-box-rows datepicker-rowss">
-                <div class="d-p">
-                  <input class="form-control" id="date" name="date" placeholder="DD/MM/YYY" type="text"/>
-                </div>
-                <div class="d-p">
-                  <select name="cars" id="cars">
-                    <option value="volvo">ZDIGIT</option>
-                    <option value="saab">01</option>
-                    <option value="mercedes">02</option>
-                    <option value="audi">03</option>
-                  </select>
-                </div>
-                <div class="Show_btn"> <a href="#">Show</a> </div>
-              </div>
-            </div>
-            <div class="table-wrapper-box">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Time</th>
-                    <th scope="col">Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>09</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>09</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>09</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>09</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>09</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <td>10:15AM</td>
-                    <td>09</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 </div>
 </body>
 <script src="js/script.js"></script>
@@ -1051,19 +801,20 @@ jQuery(window).load(function(){
           var from_input = Number($(this).data("from"));
           var to_input   = Number($(this).data("to"));
           var up_value   = Number($(this).val());
-          console.log(up_value);
+          //console.log(up_value);
           if(up_value>99){
             up_value = 99;
             $(this).val(up_value);
           }
           for(z=from_input; z<=to_input; z++ ){
+           
             var cur_input_val = up_value;
             $("#num_id_"+z).val(cur_input_val);
             var digit = Number($("#num_id_"+z).data("digit"));
             $('.inner_input_vertical').each(function(i, obj) {
                 var from_data = Number($(obj).data("from"));
                 var to_data   = Number($(obj).data("to"));
-                for(zz=from_data; zz<=to_data; zz=zz+6)
+                for(zz=from_data; zz<=to_data; zz=zz+10)
                 {
                   if(digit == zz){
                     var cur_val = cur_input_val+Number($(obj).val());
@@ -1078,37 +829,7 @@ jQuery(window).load(function(){
           
       });
 
-      function section_class(e,up_value){
-        //console.log(up_value);
-          //Updating the IDs//
-          var from_input = Number($(e).data("from"));
-          var to_input   = Number($(e).data("to"));
-          var up_value   = Number(up_value);
-          if(up_value>99){
-            up_value = 99;
-            $(e).val(up_value);
-          }
-          for(z=from_input; z<=to_input; z++ ){
-            var cur_input_val = up_value;
-            $("#num_id_"+z).val(cur_input_val);
-            var digit = Number($("#num_id_"+z).data("digit"));
-            $('.inner_input_vertical').each(function(i, obj) {
-                var from_data = Number($(obj).data("from"));
-                var to_data   = Number($(obj).data("to"));
-                for(zz=from_data; zz<=to_data; zz=zz+6)
-                {
-                  if(digit == zz){
-                    var cur_val = cur_input_val+Number($(obj).val());
-                    if(cur_val>=99){
-                      cur_val = 99;
-                    }
-                    $("#num_id_"+z).val(cur_val);       
-                  }
-                }
-            });
-          }
-          
-      };
+      
 
       $(".inner_input_vertical").keyup(function(e){
           //Updating the IDs//
@@ -1119,7 +840,8 @@ jQuery(window).load(function(){
             up_value = 99;
             $(this).val(up_value);
           }
-          for(z=from_input; z<=to_input; z+=6 ){
+          for(z=from_input; z<=to_input; z+=10){
+            console.log(z);
             var cur_input_val = up_value;
             $("#num_id_"+z).val(cur_input_val);
 
@@ -1186,7 +908,7 @@ jQuery(window).load(function(){
           <?php 
             if($is_manual==0){
           ?>
-          $("#result_animation").show();
+          $("#result_animation").show(); //Temp
           <?php }
           ?>
 
@@ -1373,12 +1095,12 @@ jQuery(window).load(function(){
                 //Up Key
                 if(tabindex<=28){
                   var upindex= Math.ceil(tabindex/7);
-                    $('.section_class[data-index="'+upindex+'"]').focus();
+                    //$('.section_class[data-index="'+upindex+'"]').focus();
                 }
-                tabindex = tabindex-28;
+                tabindex = tabindex-22;
              }else if(keyValue == 40){
                 //Down Key
-                 tabindex = tabindex+28;
+                 tabindex = tabindex+22;
              }
 
              //CHecking if length available//
@@ -1390,50 +1112,11 @@ jQuery(window).load(function(){
                   tabindex--;
                 }
               }
+              console.log(tabindex);
               $('[tabindex=' + tabindex + ']').focus();
          }
      });
-     $(".section_class").on('keyup', function(eInner) {
-        var index =$(this).data("index");
-        var keyValue = eInner.which; //enter key
-        
-        if (keyValue == 39 || keyValue == 37 || keyValue == 38 || keyValue == 40){
-          if(keyValue == 39){ 
-                //Right Key
-                 index++;
-                 if($('.section_class[data-index="'+(index)+'"]').length){
-                  $('.section_class[data-index="'+(index)+'"]').focus();
-                 }else{
-                  $('.section_class[data-index="1"]').focus();
-                 }
-             }else if(keyValue == 37){ 
-                //Left Key
-                 index--;
-                if($('.section_class[data-index="'+(index)+'"]').length){
-                 $('.section_class[data-index="'+(index)+'"]').focus();
-                }else{
-                  $('.section_class[data-index="4"]').focus();
-                }
-             }else if(keyValue == 38){
-                //Up Key
-                 //tabindex = tabindex-28;
-             }else if(keyValue == 40){
-                //Down Key
-                if(index==1){
-                  $('[tabindex=2]').focus();
-                }else if(index==2){
-                  $('[tabindex=9]').focus();
-                }else if(index==3){
-                  $('[tabindex=16]').focus();
-                }else if(index==4){
-                  $('[tabindex=23]').focus();
-                }
-             }
-        }else{
-          section_class(this,$(this).val());
-        }
-        //console.log(index);
-     });
+     
   });
    function print_ticket(BARCODE_ID){
       var data = "print_ticket&barcode="+BARCODE_ID+"&GAMEID="+GAMEID;
@@ -1633,10 +1316,10 @@ var mywindow = window.open('', 'self', 'height=120,width=400');
        // console.log(ccc);
         //operator = operator*-1;
         clearInterval(myInterval);
-        $("#display_num").html(numArr[result_value]);
+        $("#display_num").html(result_value);
        // $(".animate").transition({y: -ccc+'px'});
       }else{
-        $("#display_num").html(numArr[ccc]);
+        $("#display_num").html(ccc);
       }
       
     }

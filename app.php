@@ -95,7 +95,7 @@
     <div class="row">
       <div class="top-banner-btn">
         <div class="btn1"><a href="#">120Card</a></div>
-        <div class="btn2"><a href="#">2 Digit</a></div>
+        <div class="btn2"><a href="2digit.php">2 Digit</a></div>
       </div>
     </div>
   </div>

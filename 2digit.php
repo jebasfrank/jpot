@@ -1142,7 +1142,7 @@ jQuery(window).load(function(){
         mywindow.document.close();
         mywindow.focus();
         mywindow.print();
-        //mywindow.close();
+        mywindow.close();
         return true;
     }
     function requestFullScreen(element) {

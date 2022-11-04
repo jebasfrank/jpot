@@ -1308,7 +1308,7 @@ var mywindow = window.open('', 'self', 'height=120,width=400');
         var myInterval = setInterval(myTimer, 100);
         myIntervalStart = 1;
       }
-      ccc = generateRandomInteger(1, 120);
+      ccc = generateRandomInteger(1, 100);
       //console.log(ccc);
       //var total_sum = 100*120;
       if(is_result_declared==1){

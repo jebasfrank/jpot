@@ -184,7 +184,7 @@
       'BarocdeToken' => 'klxwzd3e5wreecv6vr9mnbcx0hsm2m',
       'UserID' => $UserID,
       'DeviceID' => rand(999,9999),
-      'GameId' => 12,
+      'GameId' => $GameId,
       'FromTimeStamp' => $FromTimeStamp,
       'toTimeStamp' => $toTimeStamp,
       'report_type_id' => $report_type_id,
@@ -307,10 +307,18 @@ if($value->Status!='Canceled'){
      foreach($ticket_details_exp AS $ticket){
       $i++;
       $tickets = explode("-",$ticket);
-      if($i%2==0){
-        $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td></tr><tr>";
+      if($_GET['GAMEID']==12){
+        if($i%2==0){
+          $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td></tr><tr>";
+        }else{
+          $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td>";
+        }
       }else{
-        $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td>";
+        if($i%3==0){
+          $all_tickets .= "<td>".($tickets[0])." - <span>".$tickets[1]."</span></td></tr><tr>";
+        }else{
+          $all_tickets .= "<td>".($tickets[0])." - <span>".$tickets[1]."</span></td>";
+        }
       }
       $total_tickets = $total_tickets+$tickets[1];
      }

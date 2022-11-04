@@ -476,14 +476,14 @@
                       <?php 
                       if(isset($response->ResultList)){
                         foreach ($response->ResultList as $key => $value) {  
-                        $bonus = 1;
+                        $bonus = '';
                         if($value->bonus>1){
-                          $bonus = $value->bonus;
+                          $bonus = "<span style='color:yellow;'>x".$value->bonus."</span>";
                         }
                         //print_r($value);
                           ?>
-                               <div class="jackpot-roww">
-                                <?php if($bonus>1){ echo ($value->GameValue).'x'.$bonus;}else{ echo ($value->GameValue); } ?>
+                               <div class="jackpot-roww" style="font-size:18px; font-weight:600; color: #fff;">
+                                <?php echo ($value->GameValue).$bonus; ?>
                                 <p><?php echo $value->GameTime; ?></p>            
                                </div>                             
                           <?php
@@ -1142,7 +1142,7 @@ jQuery(window).load(function(){
         mywindow.document.close();
         mywindow.focus();
         mywindow.print();
-        mywindow.close();
+        //mywindow.close();
         return true;
     }
     function requestFullScreen(element) {

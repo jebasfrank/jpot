@@ -127,6 +127,24 @@
 
   }
 
+
+  function get_result_normal_game($DIGIT,$bonus){
+    if($bonus>1){
+      $bonus = "<span style='color:black'>x$bonus<span>";
+    }else{
+      $bonus = "";
+    }
+    if(1){
+      echo "<div class='no'>".$DIGIT."$bonus</div>";
+      ?>
+      
+      <div style="clear: both;">&nbsp;</div>
+      <?php
+      
+    }
+
+  }
+
   function get_result_name_img($DIGIT,$bonus){
     if($bonus>1){
       $bonus = "<span style='color:yellow'>x$bonus<span>";

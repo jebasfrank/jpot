@@ -71,7 +71,7 @@
   <script>
     var numArr = new Array();
     <?php 
-          for($i=1; $i<=120; $i++){
+          for($i=1; $i<=100; $i++){
             ?>
             numArr[<?php echo $i; ?>] = "<?php echo get_result_name_img3($i);  ?>";
             <?php
@@ -759,11 +759,9 @@ jQuery(window).load(function(){
                 <div class="d-p">
 <input value="<?php echo date("d-m-Y"); ?>" id="datefromresult_id" placeholder="Date Select" data-date-format="dd-mm-yyyy" autocomplete="off" type="text" name="from_date" id="from_date_id" class="form-control datepicker2">                </div>
                 <div class="d-p">
-                  <select name="cars" id="cars">
-                    <option value="volvo">120Cards</option>
-                    <option value="saab">2Digit</option>
-                    <option value="mercedes">Roulette</option>
-                    <option value="audi">Pick3</option>
+                  <select name="game" id="game_id">
+                    <option value="12">120 Cards</option>
+                    <option value="8">2 Digit</option>
                   </select>
                 </div>
                 <div class="Show_btn" onclick="get_result_report()"> <a style="cursor:pointer;">Show</a> </div>
@@ -1247,7 +1245,8 @@ $('#searchid').select2({
   }
   function get_result_report(){
     var dateFrom = $("#datefromresult_id").val();
-    var data = "get_result&date="+dateFrom+"&GAMEID="+GAMEID;
+    var game_id = $("#game_id").val();
+    var data = "get_result&date="+dateFrom+"&GAMEID="+game_id;
     $.ajax({
       type:"GET",
       data:data,

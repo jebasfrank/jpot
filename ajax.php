@@ -372,22 +372,24 @@ if($value->Status!='Canceled'){
         <td></td>
       </tr>
      <?php
-     foreach($response->ResultList AS $rows){
-      $dislay = $rows->GameValue;
-      // if($rows->GameValue>60){
-      //   $dislay =$dislay-60;
-      // }
-      $bonus = 1;
-      if($rows->bonus>1){
-        $bonus = $rows->bonus;
-      }
-      ?>
-      <tr>
-        <td><?php echo $rows->GameTime; ?></td>
-        <td><?php get_result_name_img_report($rows->GameValue,$bonus); ?></td>
-        <td></td>
-      </tr>
-      <?php
+     if(isset($response->ResultList)){
+       foreach($response->ResultList AS $rows){
+        $dislay = $rows->GameValue;
+        // if($rows->GameValue>60){
+        //   $dislay =$dislay-60;
+        // }
+        $bonus = 1;
+        if($rows->bonus>1){
+          $bonus = $rows->bonus;
+        }
+        ?>
+        <tr>
+          <td><?php echo $rows->GameTime; ?></td>
+          <td><?php if($gameID==12){ get_result_name_img_report($rows->GameValue,$bonus); }else{ get_result_normal_game($rows->GameValue,$bonus); } ?></td>
+          <td></td>
+        </tr>
+        <?php
+       }
      }
      ?>
      </table>

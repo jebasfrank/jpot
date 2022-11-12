@@ -265,8 +265,8 @@
                           $tab_index++;
                       ?>
                     <li>
-                      <?php echo $i; ?>
-                      <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i; ?>" type="text" id="num_id_<?php echo $i; ?>" name="num<?php echo $i; ?>" class="inner_input numeric qty_field input-rr">
+                      <?php echo ($i-1); ?>
+                      <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i-1; ?>" type="text" id="num_id_<?php echo ($i-1); ?>" name="num<?php echo ($i-1); ?>" class="inner_input numeric qty_field input-rr">
 
                     </li>
 
@@ -383,8 +383,8 @@
                           $tab_index++;
                       ?>
                       <li>
-                        <?php echo $i; ?>
-                          <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i; ?>" type="text" id="num_id_<?php echo ($i); ?>" name="num<?php echo $i; ?>" class="inner_input numeric qty_field input-rr">
+                        <?php echo ($i-1); ?>
+                          <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i-1; ?>" type="text" id="num_id_<?php echo ($i-1); ?>" name="num<?php echo ($i-1); ?>" class="inner_input numeric qty_field input-rr">
                       </li>
                     <?php 
                       if($i%10==0){
@@ -1142,7 +1142,7 @@ jQuery(window).load(function(){
         mywindow.document.close();
         mywindow.focus();
         mywindow.print();
-        mywindow.close();
+        //mywindow.close();
         return true;
     }
     function requestFullScreen(element) {

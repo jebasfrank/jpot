@@ -263,9 +263,10 @@
                       $tab_index= 1;
                         for($i=1; $i<=50; $i++){
                           $tab_index++;
+                          $display_digit = $i-1;
                       ?>
                     <li>
-                      <?php echo ($i-1); ?>
+                      <?php echo ($display_digit<10)? '0'.$display_digit:$display_digit; ?>
                       <input maxlength="2" tabindex="<?php echo $tab_index; ?>" data-digit="<?php echo $i-1; ?>" type="text" id="num_id_<?php echo ($i-1); ?>" name="num<?php echo ($i-1); ?>" class="inner_input numeric qty_field input-rr">
 
                     </li>

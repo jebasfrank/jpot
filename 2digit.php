@@ -222,24 +222,24 @@
               <?php $index= 1; ?>
               <ul>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="1" data-to="10" class="outer_input input-rr up_horizontal_class numeric">
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="0" data-to="9" class="outer_input input-rr up_horizontal_class numeric">
                 </li>
                 <?php $index= $index+22; ?>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="11" data-to="20" class="outer_input input-rr up_horizontal_class numeric input-rr">                
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="10" data-to="19" class="outer_input input-rr up_horizontal_class numeric input-rr">                
                 </li>
 
                 <?php $index= $index+22; ?>
 
                 <li>
-                  <input maxlength="2" type="text" data-from="21" tabindex="<?php echo $index; ?>" data-to="30" class="outer_input input-rr  up_horizontal_class numeric input-rr">
+                  <input maxlength="2" type="text" data-from="20" tabindex="<?php echo $index; ?>" data-to="29" class="outer_input input-rr  up_horizontal_class numeric input-rr">
                 </li>
                               <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="31" data-to="40" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+<input maxlength="2" type="text" data-from="30" data-to="39" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
  <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="41" tabindex="<?php echo $index; ?>" data-to="50" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+<input maxlength="2" type="text" data-from="40" tabindex="<?php echo $index; ?>" data-to="49" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
               </ul>
             </div>
           </div>
@@ -345,24 +345,24 @@
                  <?php $index= 12; ?>
               <ul>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="51" data-to="60" class="outer_input input-rr up_horizontal_class numeric">
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text"  data-from="50" data-to="59" class="outer_input input-rr up_horizontal_class numeric">
                 </li>
                 <?php $index= $index+22; ?>
                 <li>
-                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="61" data-to="70" class="outer_input input-rr up_horizontal_class numeric input-rr">                
+                  <input maxlength="2" tabindex="<?php echo $index; ?>" type="text" data-from="60" data-to="69" class="outer_input input-rr up_horizontal_class numeric input-rr">                
                 </li>
 
                 <?php $index= $index+22; ?>
 
                 <li>
-                  <input maxlength="2" type="text" data-from="71" tabindex="<?php echo $index; ?>" data-to="80" class="outer_input input-rr  up_horizontal_class numeric input-rr">
+                  <input maxlength="2" type="text" data-from="70" tabindex="<?php echo $index; ?>" data-to="79" class="outer_input input-rr  up_horizontal_class numeric input-rr">
                 </li>
   <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="81" data-to="90" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+<input maxlength="2" type="text" data-from="80" data-to="89" tabindex="<?php echo $index; ?>" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
  <?php $index= $index+22; ?>
                 <li>
-<input maxlength="2" type="text" data-from="91" tabindex="<?php echo $index; ?>" data-to="100" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
+<input maxlength="2" type="text" data-from="90" tabindex="<?php echo $index; ?>" data-to="99" class="outer_input input-rr up_horizontal_class numeric input-rr">                </li>
                 </ul>
             </div>
           </div>

@@ -312,18 +312,22 @@ if($value->Status!='Canceled'){
       $tickets = explode("-",$ticket);
       if($_GET['GAMEID']==12){
         if($i%2==0){
-          $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td></tr><tr>";
+          $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".($tickets[1]/2)."</span></td></tr><tr>";
         }else{
-          $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".$tickets[1]."</span></td>";
+          $all_tickets .= "<td>".get_result_name_img2($tickets[0])." - <span style='font-size:13px;'>".($tickets[1]/2)."</span></td>";
         }
       }else{
         if($i%3==0){
-          $all_tickets .= "<td>".($tickets[0])." - <span>".$tickets[1]."</span></td></tr><tr>";
+          $all_tickets .= "<td>".($tickets[0])." - <span>".($tickets[1]/2)."</span></td></tr><tr>";
         }else{
-          $all_tickets .= "<td>".($tickets[0])." - <span>".$tickets[1]."</span></td>";
+          if(isset($tickets[1])){
+            $all_tickets .= "<td>".($tickets[0])." - <span>".($tickets[1]/2)."</span></td>";
+          }
         }
       }
-      $total_tickets = $total_tickets+$tickets[1];
+      if(isset($tickets[1])){
+        $total_tickets = $total_tickets+($tickets[1]/2);
+      }
      }
      $all_tickets .= "</table>";
      $all_tickets2 = $all_tickets;

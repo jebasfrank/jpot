@@ -293,6 +293,10 @@
                 <?php $index=112; ?>
                 <ul>
                   <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="0" data-to="40" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
                     <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="1" data-to="41" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
@@ -326,10 +330,6 @@
                   <?php $index++; ?>
                   <li>
                     <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="9" data-to="49" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="10" data-to="50" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                 </ul>
               </div>
@@ -411,6 +411,10 @@
                 <?php $index=123; ?>
                 <ul>
                   <li>
+                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="50" data-to="90" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                  </li>
+                  <?php $index++; ?>
+                  <li>
                     <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="51" data-to="91" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
@@ -444,10 +448,6 @@
                   <?php $index++; ?>
                   <li>
                     <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="59" data-to="99" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
-                  </li>
-                  <?php $index++; ?>
-                  <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="60" data-to="100" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                 </ul>
               </div>

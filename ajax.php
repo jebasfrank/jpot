@@ -2,7 +2,10 @@
   session_start();
   date_default_timezone_set('Asia/Kolkata');
   include "includes/functions.php";
-  $uid = $_SESSION['uid'];
+  $uid = 0;
+  if(isset($_SESSION['uid'])){
+    $uid = $_SESSION['uid'];
+  }
   if(isset($_GET['login_user'])){
     $user_id = $_GET['user_id'];
     $login_pass = $_GET['login_pass'];

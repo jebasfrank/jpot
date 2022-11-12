@@ -293,43 +293,43 @@
                 <?php $index=112; ?>
                 <ul>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="0" data-to="40" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_040" maxlength="2" tabindex="<?php echo $index; ?>" data-from="0" data-to="40" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="1" data-to="41" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_141" maxlength="2" tabindex="<?php echo $index; ?>" data-from="1" data-to="41" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="2" data-to="42" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_242" maxlength="2" tabindex="<?php echo $index; ?>" data-from="2" data-to="42" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="3" data-to="43" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_343" maxlength="2" tabindex="<?php echo $index; ?>" data-from="3" data-to="43" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="4" data-to="44" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_444" maxlength="2" tabindex="<?php echo $index; ?>" data-from="4" data-to="44" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="5" data-to="45" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_545" maxlength="2" tabindex="<?php echo $index; ?>" data-from="5" data-to="45" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="6" data-to="46" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_646" maxlength="2" tabindex="<?php echo $index; ?>" data-from="6" data-to="46" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="7" data-to="47" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_747" maxlength="2" tabindex="<?php echo $index; ?>" data-from="7" data-to="47" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="8" data-to="48" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_848" maxlength="2" tabindex="<?php echo $index; ?>" data-from="8" data-to="48" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="9" data-to="49" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_949" maxlength="2" tabindex="<?php echo $index; ?>" data-from="9" data-to="49" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                 </ul>
               </div>
@@ -411,43 +411,43 @@
                 <?php $index=123; ?>
                 <ul>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="50" data-to="90" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5090" maxlength="2" tabindex="<?php echo $index; ?>" data-from="50" data-to="90" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="51" data-to="91" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5191" maxlength="2" tabindex="<?php echo $index; ?>" data-from="51" data-to="91" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="52" data-to="92" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5292" maxlength="2" tabindex="<?php echo $index; ?>" data-from="52" data-to="92" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="53" data-to="93" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5393" maxlength="2" tabindex="<?php echo $index; ?>" data-from="53" data-to="93" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="54" data-to="94" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5494" maxlength="2" tabindex="<?php echo $index; ?>" data-from="54" data-to="94" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="55" data-to="95" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5595" maxlength="2" tabindex="<?php echo $index; ?>" data-from="55" data-to="95" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="56" data-to="96" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5696" maxlength="2" tabindex="<?php echo $index; ?>" data-from="56" data-to="96" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="57" data-to="97" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5797" maxlength="2" tabindex="<?php echo $index; ?>" data-from="57" data-to="97" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="58" data-to="98" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5898" maxlength="2" tabindex="<?php echo $index; ?>" data-from="58" data-to="98" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                   <?php $index++; ?>
                   <li>
-                    <input maxlength="2" tabindex="<?php echo $index; ?>" data-from="59" data-to="99" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
+                    <input id="verticle_5999" maxlength="2" tabindex="<?php echo $index; ?>" data-from="59" data-to="99" autocomplete="off" class="input-rr inner_input numeric inner_input_vertical" type="text" id="text" name="text">
                   </li>
                 </ul>
               </div>
@@ -805,7 +805,6 @@ jQuery(window).load(function(){
             $(this).val(up_value);
           }
           for(z=from_input; z<=to_input; z++ ){
-           
             var cur_input_val = up_value;
             $("#num_id_"+z).val(cur_input_val);
             var digit = Number($("#num_id_"+z).data("digit"));
@@ -824,6 +823,7 @@ jQuery(window).load(function(){
                 }
             });
           }
+
           
       });
 
@@ -839,7 +839,42 @@ jQuery(window).load(function(){
             $(this).val(up_value);
           }
           for(z=from_input; z<=to_input; z+=10){
-            console.log(z);
+            var cur_input_val = up_value;
+            $("#num_id_"+z).val(cur_input_val);
+
+            var digit = Number($("#num_id_"+z).data("digit"));
+            $('.up_horizontal_class').each(function(i, obj) {
+                var from_data = Number($(obj).data("from"));
+                var to_data   = Number($(obj).data("to"));
+                for(zz=from_data; zz<=to_data; zz++)
+                {
+                  if(digit == zz){
+                    var cur_val = cur_input_val+Number($(obj).val());
+                    if(cur_val>=99){
+                      cur_val = 99;
+                    }
+                    $("#num_id_"+z).val(cur_val);             
+                  }
+                }
+            });
+
+          }
+
+            //2nd Block
+          if(Number($(this).data("from"))<50){
+            var from_input = Number($(this).data("from"))+50;
+            var to_input   = Number($(this).data("to"))+50;
+          }else{
+            var from_input = Number($(this).data("from"))-50;
+            var to_input   = Number($(this).data("to"))-50;
+          }
+          var up_value   = Number($(this).val());
+          if(up_value>99){
+            up_value = 99;
+            $(this).val(up_value);
+          }
+          $("#verticle_"+from_input+''+to_input).val(up_value);
+          for(z=from_input; z<=to_input; z+=10){
             var cur_input_val = up_value;
             $("#num_id_"+z).val(cur_input_val);
 

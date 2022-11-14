@@ -318,10 +318,10 @@ if($value->Status!='Canceled'){
         }
       }else{
         if($i%3==0){
-          $all_tickets .= "<td>".($tickets[0])." - <span>".($tickets[1]/2)."</span></td></tr><tr>";
+          $all_tickets .= "<td>".($tickets[0]<10 ? '0'.$tickets[0]:$tickets[0])." - <span>".($tickets[1]/2)."</span></td></tr><tr>";
         }else{
           if(isset($tickets[1])){
-            $all_tickets .= "<td>".($tickets[0])." - <span>".($tickets[1]/2)."</span></td>";
+            $all_tickets .= "<td>".($tickets[0]<10 ? '0'.$tickets[0]:$tickets[0])." - <span>".($tickets[1]/2)."</span></td>";
           }
         }
       }

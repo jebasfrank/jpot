@@ -642,7 +642,7 @@ jQuery(window).load(function(){
                     <td colspan="3" style="font-size:12px !important;">Barcode <br><span id="trans_id"></span></td>
                 </tr> 
                 <tr>
-                  <td style="font-size:12px !important;" colspan="3">120Card Game</td>
+                  <td style="font-size:12px !important;" colspan="3">2 Digit</td>
                 </tr>
                 <!-- <tr>
                   <td style="width:50%">Ticket Time</td>

@@ -32,7 +32,7 @@
           <div class="logo-new-group"><a href="#">Jackpot </a></div>
           <div class="logo-mobile-login-group"><a href="#">Mobile Login</a></div>
           <div class="input-new-group">
-            <input class="input-new-group-newclass" type="text" name="login_email" id="login_email" placeholder="ID">
+            <input autofocus class="input-new-group-newclass" type="text" name="login_email" id="login_email" placeholder="ID">
           </div>
           <div class="input-new-group">
             <input class="input-new-group-newclass" type="password" name="login_pass" id="login_pass"  placeholder="Password">

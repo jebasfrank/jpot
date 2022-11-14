@@ -512,25 +512,25 @@
           <div class="left-box-btn1">
             <div class="left-box-btn-wr">
            <button onclick="select_qtyx(10)" id="btn10" type="button" class="btn btn-danger bottom_btn" style="background-color: #FE0E00;">10</button></div>
-                <p>1050</p>
+                <p>800</p>
           </div>
           <div class="left-box-btn2">
                         <div class="left-box-btn-wr">
 
              <button onclick="select_qtyx(5)" id="btn5" type="button" class="btn bottom_btn" style="background-color: #FE9A00;color: #fff;">5</button></div>
-                <p>525</p>
+                <p>400</p>
           </div>
           <div class="left-box-btn3">
             <div class="left-box-btn-wr">
             <button onclick="select_qtyx(2)" id="btn2" type="button" class="btn  bottom_btn" style="background-color: #01D649;color: #fff;">2</button></div>
-                <p>210</p>
+                <p>160</p>
 
           </div>
 
           <div class="left-box-btn1">
             <div class="left-box-btn-wr">
             <button onclick="select_qtyx(1)" id="btn1" type="button" class="btn  bottom_btn" style="background-color: #FE0E00;color: #fff;">1</button></div>
-                <p>105</p>
+                <p>80</p>
 
           </div>
         </div>
